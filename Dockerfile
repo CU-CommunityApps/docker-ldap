@@ -1,5 +1,5 @@
 # Pull base image.
-FROM docker.cucloud.net/base
+FROM dtr.cucloud.net/cs/base
 
 # Install Java.
 RUN \
