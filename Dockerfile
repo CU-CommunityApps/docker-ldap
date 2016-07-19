@@ -1,18 +1,16 @@
-# Pull base image.
-FROM dtr.cucloud.net/cs/base
+## BUILDING
+##   (from project root directory)
+##   $ docker build -t cu-communityapps-docker-ldap .
+##
+## RUNNING
+##   $ docker run cu-communityapps-docker-ldap
 
-# Install Java.
-RUN \
-  apt-get update && \
-  apt-get install -y slapd ldap-utils phpldapadmin && \
-  rm -rf /var/lib/apt/lists/*
+FROM gcr.io/stacksmith-images/ubuntu-buildpack:14.04-r8
 
-COPY run-ldap.sh /
+MAINTAINER Bitnami <containers@bitnami.com>
 
-# Define working directory.
-WORKDIR /var/lib
+ENV STACKSMITH_STACK_ID="3uhzzjo" \
+    STACKSMITH_STACK_NAME="CU-CommunityApps/docker-ldap" \
+    STACKSMITH_STACK_PRIVATE="1"
 
-EXPOSE 389
-
-# Define default command.
-CMD ["/run-ldap.sh"]
+## STACKSMITH-END: Modifications below this line will be unchanged when regenerating
